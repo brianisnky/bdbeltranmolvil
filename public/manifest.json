@@ -1,0 +1,15 @@
+{
+  "short_name": "Agenda",
+  "name": "Agenda",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#cee6e6",
+  "theme_color": "#ffcb2d",
+  "icons": [
+    {
+      "src": "icono.png",
+      "sizes": "2048x2048",
+      "type": "image/png"
+    }
+  ]
+}
