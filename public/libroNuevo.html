@@ -21,14 +21,14 @@
         <h1 style="color:red;">Agrega Libro</h1>
       </header>
        <label>Titulo del Libro: </label> 
-       <p><input id="titulo" type="text" placeholder="Titulo de libro" minlength="5" maxlength="40" data-validation-required-message="Titulo de libro minimo de 5 Caracteres" required></p>
+       <p><input id="titulo" type="text" placeholder="Titulo de libro" minlength="5" maxlength="40" required></p>
        <label>Autor: </label>
-       <p><input id="autor" type="text" placeholder="Nombre del Autor" minlength="5" maxlength="40"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="Nombre no Valido, ingrese solo letras" required/></p>
+       <p><input id="autor" type="text" placeholder="Nombre del Autor" minlength="5" maxlength="40"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/></p>
        <label>Año de Publicación: </label>
-       <p><input id="ano" type="text" placeholder="Año de Publicacion" minlength="4" data-validation-required-message="Ingrese Año Valido" pattern="[0-9]+"  required></p>  <label>Editorial: </label>
-       <p><input id="editorial" type="text" placeholder="Año de Publicacion" minlength="2" data-validation-required-message="La editorial debe tener minimo dos Caracteres"  required></p>
+       <p><input id="ano" type="text" placeholder="Año de Publicacion" length="4" pattern="[0-9]+"  required></p>  <label>Editorial: </label>
+       <p><input id="editorial" type="text" placeholder="Editorial" minlength="2" required></p>
        <label>Pais: </label>
-       <p><input id="pais" type="text" placeholder="Año de Publicacion" minlength="4" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="País no Valido, ingrese solo letras" required></p> 
+       <p><input id="pais" type="text" placeholder="País de Publicación" minlength="4" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"  required></p> 
         <br>        <button type="submit">Guardar</button>   
        
 

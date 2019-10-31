@@ -22,14 +22,15 @@
       </header>
         <BR>
           <label>Titulo del Libro: </lable> 
-       <p><input id="libtitulo" type="text" placeholder="Titulo de libro" minlength="5" maxlength="40" data-validation-required-message="Titulo de libro minimo de 5 Caracteres" required></p>
+       <p><input id="libtitulo" type="text" placeholder="Titulo de libro" minlength="5" maxlength="40" required></p>
          <label>Autor: </lable> 
-       <p><input id="autor" type="text" placeholder="Nombre del Autor" minlength="5" maxlength="40"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="Nombre no Valido, ingrese solo letras" required></p>
+       <p><input id="autor" type="text" placeholder="Nombre del Autor" minlength="5"   pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required></p>maxlength="40"
         <label>Año de Publicación: </lable> 
-       <p><input id="ano" type="text" placeholder="Año de Publicacion" minlength="4" data-validation-required-message="Ingrese Año Valido" pattern="[0-9]+"  required></p>  <label>Editorial: </lable> 
-       <p><input id="editorial" type="text" placeholder="Año de Publicacion" minlength="2" data-validation-required-message="La editorial debe tener minimo dos Caracteres"  required></p>
+       <p><input id="ano" type="text" placeholder="Año de Publicacion" length="4"  pattern="[0-9]+"  required></p> 
+        <label>Editorial: </lable> 
+       <p><input id="editorial" type="text" placeholder="Año de Publicacion" minlength="2"  required></p>
        <label>Pais: </lable> 
-       <p><input id="pais" type="text" placeholder="Año de Publicacion" minlength="4" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="País no Valido, ingrese solo letras" required></p> 
+       <p><input id="pais" type="text" placeholder="País de Publicación" minlength="4" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required></p> 
 
       <br>
       <br>
