@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Actividades</title>
+    <link rel="icon" sizes="32x32" href="favicon.ico">
+    <meta name="theme-color" content="#567777">
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estilos.css">
+    <script type="module" src="lib/registraServiceWorker.js"></script>
+    <script src="lib/polycustom.js"></script>
+    <script type="module" src="mi-footer.js"></script>
+  </head>
+  <body style="background-color:powderblue;">
+    
+    <center><form id="vista">
+       <header style="background-color:#83cfd0;">
+        
+           <h1 style="color:red;"><output id="título"><progress max="100">Cargando…</progress></output></h1>
+      </header>
+        <BR>
+          <label>Titulo del Libro: </lable> 
+       <p><input id="libtitulo" type="text" placeholder="Titulo de libro" minlength="5" maxlength="40" data-validation-required-message="Titulo de libro minimo de 5 Caracteres" required></p>
+         <label>Autor: </lable> 
+       <p><input id="autor" type="text" placeholder="Nombre del Autor" minlength="5" maxlength="40"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="Nombre no Valido, ingrese solo letras" required></p>
+        <label>Año de Publicación: </lable> 
+       <p><input id="ano" type="text" placeholder="Año de Publicacion" minlength="4" data-validation-required-message="Ingrese Año Valido" pattern="[0-9]+"  required></p>  <label>Editorial: </lable> 
+       <p><input id="editorial" type="text" placeholder="Año de Publicacion" minlength="2" data-validation-required-message="La editorial debe tener minimo dos Caracteres"  required></p>
+       <label>Pais: </lable> 
+       <p><input id="pais" type="text" placeholder="Año de Publicacion" minlength="4" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="País no Valido, ingrese solo letras" required></p> 
+
+      <br>
+      <br>
+      
+        <button type="submit">Guardar</button>
+        <button id="eliminar" type="button">Eliminar</button>
+        <br>
+        <br>
+              
+      
+    </form>
+    <a href="index.html">
+         <button >Cancelar</button>
+        </a>
+    
+       <br>
+       <br>
+
+    <footer is="mi-footer"></footer></center>
+    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script type="module">
+      import { error } from "./lib/util.js";
+      const parametros = new URLSearchParams(location.search);
+      const id = parametros.get("id");
+      const firestore = firebase.firestore();
+      firestore.enablePersistence()
+        .catch(error)
+        .then(busca);
+      async function busca() {
+        try {
+          const doc = await firestore.collection("BIBLIOTECA").doc(id).get();
+          if (doc.exists) {
+            const modelo = doc.data();
+            document.title = modelo.PASA_TITULO;
+            título.value = modelo.PASA_TITULO;
+            libtitulo.value = modelo.PASA_TITULO;
+            autor.value = modelo.PASA_AUTOR;
+            ano.value = modelo.PASA_ANO;
+            editorial.value = modelo.PASA_EDITORIAL;
+            pais.value = modelo.PASA_PAIS;
+            vista.addEventListener("submit", guarda);
+            eliminar.addEventListener("click", elimina);
+          } else {
+            alert("Titulo no encontrado");
+          }
+        } catch (e) {
+          error(e)
+        }
+      }
+      async function guarda(evt) {
+        try {
+          evt.preventDefault();
+          const PASA_TITULO = libtitulo.value;
+          const PASA_AUTOR = autor.value.trim();
+          const PASA_ANO = ano.value;
+          const PASA_EDITORIAL = editorial.value;
+          const PASA_PAIS = pais.value;
+
+
+          const modelo = { PASA_TITULO, PASA_AUTOR, PASA_ANO , PASA_EDITORIAL, PASA_PAIS  };
+          await firestore.collection("BIBLIOTECA").doc(id).set(modelo);
+
+          document.location = "index.html";
+        } catch (e) {
+          error(e)
+        }
+      }
+      async function elimina() {
+        try {
+          await firestore.collection("BIBLIOTECA").doc(id).delete();
+          document.location = "index.html";
+        } catch (e) {
+          error(e)
+        }
+      }
+    </script>
+  </body>
+</html>

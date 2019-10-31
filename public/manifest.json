@@ -1,10 +1,10 @@
 {
-  "short_name": "Agenda",
-  "name": "Agenda",
+  "short_name": "BIBLIOTECA",
+  "name": "BIBLIOTECA",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#cee6e6",
-  "theme_color": "#ffcb2d",
+  "theme_color": "#567777",
   "icons": [
     {
       "src": "icono.png",

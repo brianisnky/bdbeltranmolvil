@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Agenda de Actividades</title>
+    <title>BIBLIOTECA</title>
  
     <!-- Ícono para la página web. -->
     <link rel="icon" sizes="32x32" href="favicon.ico">
@@ -34,19 +34,18 @@
     <script type="module" src="mi-footer.js"></script>
    
   </head>
-  <body style="background-color:powderblue;">
+  <center><body style="background-color:powderblue;">
     <header style="background-color:#83cfd0;">
-      
-      <h1 style="color:red;">Actividades</h1>
+       <h1 style="color:red;">BIBLIOTECA</h1>
     </header>
-
+       
     <ul id="ul">
       <li><progress max="100">Cargando…</progress></li>
     </ul>
     <br>
     <br>
 
-       <a href="actividadNueva.html">
+       <a href="libroNuevo.html">
    <center><button>Agregar</button></center> 
    </a>
     <br>
@@ -64,21 +63,37 @@
         .catch(error)
         .then(consulta);
       function consulta() {
-        firebase.firestore().collection("BACTIVIDAD").onSnapshot(
+        firebase.firestore().collection("BIBLIOTECA").onSnapshot(
           querySnapshot => {
             ul.innerHTML = "";
             querySnapshot.forEach(doc => {
               const modelo = doc.data();
               ul.innerHTML += /*html*/
-                `<li>
-                  <a href="agenda.html?id=${url(doc.id)}">
-                ACTIVIDAD: ${cod(modelo.PASA_BACTIVIDAD)} ESTATUS: ${cod(modelo.PASA_BESTATUS)} 
+                `<table><tr><th>FICHA BIBLIOGRAFICA</th></tr>
+                <tr><td><a href="biblioteca.html?id=${url(doc.id)}">
+                 TITULO: ${cod(modelo.PASA_TITULO)}
+                  </a></td></tr><tr><td>
+                  <a href="biblioteca.html?id=${url(doc.id)}">
+                AUTOR: ${cod(modelo.PASA_AUTOR)} 
                   </a>
-                </li>`;
+                  </td></tr>
+                  <tr><td><a href="biblioteca.html?id=${url(doc.id)}">
+                 AÑO: ${cod(modelo.PASA_ANO)}
+                  </a></td></tr>
+                  <tr><td><a href="biblioteca.html?id=${url(doc.id)}">
+                 EDITORIAL: ${cod(modelo.PASA_EDITORIAL)}
+                  </a></td></tr>
+                  <tr><td><a href="biblioteca.html?id=${url(doc.id)}">
+                 PAIS: ${cod(modelo.PASA_PAIS)}
+                  </a></td></tr>
+                  <br><br>
+
+                `
+                ;
             });
           },
           error);
       }
     </script>
-  </body>
+  </body></center>
 </html>

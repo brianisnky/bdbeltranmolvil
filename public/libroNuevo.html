@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Agrega Libro</title>
+    <link rel="icon" sizes="32x32" href="favicon.ico">
+    <meta name="theme-color" content="#567777">
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="estilos.css">
+    <script type="module" src="lib/registraServiceWorker.js"></script>
+    <script src="lib/polycustom.js"></script>
+    <script type="module" src="mi-footer.js"></script>
+  </head>
+  <body style="background-color:powderblue;">
+    
+   <center> <form id="vista">
+      <header style="background-color:#83cfd0;">
+        
+        <h1 style="color:red;">Agrega Libro</h1>
+      </header>
+       <label>Titulo del Libro: </label> 
+       <p><input id="titulo" type="text" placeholder="Titulo de libro" minlength="5" maxlength="40" data-validation-required-message="Titulo de libro minimo de 5 Caracteres" required></p>
+       <label>Autor: </label>
+       <p><input id="autor" type="text" placeholder="Nombre del Autor" minlength="5" maxlength="40"  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="Nombre no Valido, ingrese solo letras" required/></p>
+       <label>Año de Publicación: </label>
+       <p><input id="ano" type="text" placeholder="Año de Publicacion" minlength="4" data-validation-required-message="Ingrese Año Valido" pattern="[0-9]+"  required></p>  <label>Editorial: </label>
+       <p><input id="editorial" type="text" placeholder="Año de Publicacion" minlength="2" data-validation-required-message="La editorial debe tener minimo dos Caracteres"  required></p>
+       <label>Pais: </label>
+       <p><input id="pais" type="text" placeholder="Año de Publicacion" minlength="4" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" data-validation-required-message="País no Valido, ingrese solo letras" required></p> 
+        <br>        <button type="submit">Guardar</button>   
+       
+
+    </form>   
+    <br>
+ <a href="https://appbdbeltran.web.app/index.html">
+         <button >Cancelar</button>
+        </a>
+        <br>
+        <br>
+
+    <footer is="mi-footer"></footer></center>
+    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script type="module">
+      import { error } from "./lib/util.js";
+      const firestore = firebase.firestore();
+      firestore.enablePersistence()
+        .catch(error)
+        .then(() => vista.addEventListener("submit", guarda));
+      async function guarda(evt) {
+        try {
+          evt.preventDefault();
+          const PASA_TITULO = titulo.value.trim();
+          const PASA_AUTOR = autor.value;
+          const PASA_ANO = ano.value;
+          const PASA_EDITORIAL = editorial.value;
+          const PASA_PAIS = pais.value;
+
+
+          const modelo = { PASA_TITULO, PASA_AUTOR, PASA_ANO , PASA_EDITORIAL, PASA_PAIS  };
+          await firestore.collection("BIBLIOTECA").add(modelo);
+          document.location = "index.html";
+        } catch (e) {
+          error(e)
+        }
+      }
+    </script>
+  </body>
+</html>

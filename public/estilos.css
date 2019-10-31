@@ -17,3 +17,26 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+  
+}
+
+td, th {
+  border: 1px solid black;
+  text-align: left;
+
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+th{
+    
+    background-color: black;
+    color: white;
+    
+}
